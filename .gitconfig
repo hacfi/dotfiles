@@ -1,0 +1,11 @@
+[user]
+	name = Philipp Wahala
+	email = philipp.wahala@gmail.com
+[color]
+	ui = true
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[core]
+	excludesfile = /home/iliad/.gitignore
