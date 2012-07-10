@@ -8,4 +8,4 @@
 	interactive = auto
 	status = auto
 [core]
-	excludesfile = /home/iliad/.gitignore
+	excludesfile = /Users/achilles/.gitignore
