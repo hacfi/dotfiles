@@ -2,6 +2,8 @@ COPY_EXTENDED_ATTRIBUTES_DISABLE=true COPYFILE_DISABLE=true
 export COPY_EXTENDED_ATTRIBUTES_DISABLE COPYFILE_DISABLE
 
 alias curdir='pwd | pbcopy'
+
+alias lastmod='find . -type f -exec stat -f "%m %N" {} \; | sort -n | tail -1 | cut -f2- -d" "'
 ltree() { tree -C $* | less -R }
 
 showattr() {
@@ -56,3 +58,33 @@ alias phpstop='launchctl unload ~/Library/LaunchAgents/homebrew-php.josegonzalez
 alias mysqlstart='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist'
 alias mysqlstop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist'
 mysqldb () { echo "CREATE DATABASE $1" | mysql }
+
+
+export MARKPATH=$HOME/.marks
+
+function jump {
+  mark=$(head -n 1 "$MARKPATH/$1" 2>/dev/null)
+
+  if [[ $mark != '' ]]; then
+    cd $mark
+  else
+    echo "No such mark: $1"
+  fi
+}
+
+function mark {
+  mkdir -p "$MARKPATH"; echo "$(pwd)" > "$MARKPATH/$1"
+}
+
+function unmark {
+  rm -i "$MARKPATH/$1"
+}
+
+function marks {
+  find "$MARKPATH" -type f | while read filename
+  do
+    printf "%-12s -> %s\n" $(basename ${filename}) $(head -n 1 ${filename})
+  done
+}
+
+alias j=jump

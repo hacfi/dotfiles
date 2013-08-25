@@ -118,4 +118,6 @@ alias sfrp='sf router:debug -e=prod'
 alias sfgesnb='sf doctrine:generate:entities --no-backup'
 alias sfpop='sf fos:elastica:populate'
 
+alias twigcache='grep -r "/\*" . | grep .twig'
+
 
