@@ -11,6 +11,8 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+set bs=2
+
 syntax on
 
 set number
