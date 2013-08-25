@@ -1,3 +1,6 @@
+[core]
+	excludesfile = /Users/achilles/.gitignore
+	pager = less -F -X
 [user]
 	name = Philipp Wahala
 	email = philipp.wahala@gmail.com
@@ -7,8 +10,10 @@
 	diff = auto
 	interactive = auto
 	status = auto
-[core]
-	excludesfile = /Users/achilles/.gitignore
+[pretty]
+	pretty-history = format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset
+[github]
+	user = hacfi
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 

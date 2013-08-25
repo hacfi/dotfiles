@@ -3,7 +3,13 @@
 .Spotlight-V100
 .Trashes
 
+.todo
 .buildpath
 .project
 .settings/
+.idea/
+
+*.sublime-*
+
+data/tmp
 
