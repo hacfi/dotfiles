@@ -13,6 +13,8 @@ set expandtab
 
 set bs=2
 
+" set viminfo=""
+
 syntax on
 
 set number
