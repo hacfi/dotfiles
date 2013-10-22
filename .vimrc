@@ -19,3 +19,5 @@ syntax on
 
 set number
 set showmatch
+
+set directory=/usr/local/var/vim

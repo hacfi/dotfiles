@@ -144,13 +144,11 @@ host_default="$(hostname -s)%{$fg_no_bold[cyan]%}"
 
 local host="%{$fg[magenta]%}${host_repr[$(hostname -s)]:-@${host_default}}"
 
-local pwd="%{$fg_no_bold[green]%}%d%{$reset_color%}"
+local pwd="%{$fg_no_bold[green]%}%50<...<%d%<<%{$reset_color%}"
 
 local seperator="●%{$reset_color%}"
 
-
 PROMPT='$(show_git_diff)${user}${host}${seperator}${pwd} $vcs_info_msg_0_» '
-
 
 
 # right prompt

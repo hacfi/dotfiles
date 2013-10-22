@@ -17,13 +17,14 @@ alias ......='cd ../../../../..'
 function mcd() { mkdir -p "$1" && cd "$1"; }
 alias mcd='nocorrect mcd'
 alias rp='cd `pwd -P`'
+alias scp='nocorrect scp'
 
 
 alias fhistory="history | grep -i "
 alias cleandir='find . -name ".DS_Store" -delete'
 
 alias mtr='nocorrect mtr'
-alias netlisteners='lsof -i -P | grep LISTEN'
+alias netlisteners='sudo lsof -i -P | grep LISTEN'
 
 
 function sshauth() {
@@ -91,6 +92,10 @@ function ghrepos() {
   curl -s https://api.github.com/users/$1/repos | grep -i full_name | cut -d : -f 2 | cut -d \" -f 2
 }
 
+
+dbcreate () { echo "CREATE DATABASE $1" | mysql }
+dbdrop () { echo "DROP DATABASE $1" | mysql }
+
 function sfroot() {
   dir=${PWD%/$1/*}/$1
   while [[ $PWD != '/' && ! -f composer.json ]]; do cd ..; done
@@ -98,11 +103,14 @@ function sfroot() {
     cd "$dir";
   fi
 }
+alias sfroot.='.. && sfroot'
 
 function sfpermission() {
   chmod 0777 app/cache app/logs app/var/sessions
 }
 
+alias cll='rm app/logs/*.log'
+alias sfcl='rm -rf app/cache/*'
 alias sfdc='sf doctrine:database:create'
 alias sfdd='sf doctrine:database:drop'
 alias sfsc='sf doctrine:schema:create'
@@ -113,11 +121,11 @@ alias sfgb='sf generate:bundle'
 alias sfcrud='sf doctrine:generate:crud'
 alias sfform='sf doctrine:generate:form'
 alias sfsr='sf server:run'
-alias sfr='sf router:debug'
-alias sfrp='sf router:debug -e=prod'
+alias sfr='sf router:debug -e=prod'
+alias sfrd='sf router:debug -e=dev'
 alias sfgesnb='sf doctrine:generate:entities --no-backup'
 alias sfpop='sf fos:elastica:populate'
 
-alias twigcache='grep -r "/\*" . | grep .twig'
+alias twigcache='grep -r "^/\*" app/cache/dev/twig | grep "html\.twig"'
 
 

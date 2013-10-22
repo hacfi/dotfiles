@@ -35,7 +35,9 @@ function after() {
   /usr/local/bin/growlnotify Finished -m 'Done'
 }
 
-alias randpass="openssl rand -base64 8 | shasum | cut -c 1-40 | pbcopy;pbpaste"
+function randpass {
+  openssl rand -base64 8 | shasum | cut -c 1-40 | tr -d "\r\n" | pbcopy;pbpaste
+}
 
 alias myip='curl -s ip.appspot.com | pbcopy;pbpaste'
 
@@ -49,15 +51,17 @@ alias nginxstart='sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.ng
 alias nginxstop='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
 alias nginxrestart='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist && sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
 alias nginxreload='sudo kill -HUP `cat /usr/local/var/run/nginx.pid`'
-alias nginxt='sudo /usr/local/sbin/nginx -t'
+alias nginxt='sudo /usr/local/bin/nginx -t'
 
-alias phpconf='st /usr/local/etc/php/5.4'
-alias phpstart='launchctl load ~/Library/LaunchAgents/homebrew-php.josegonzalez.php54.plist'
-alias phpstop='launchctl unload ~/Library/LaunchAgents/homebrew-php.josegonzalez.php54.plist'
+alias phpconf='st /usr/local/etc/php/5.5'
+alias phpstart='launchctl load -w /Users/achilles/Library/LaunchAgents/homebrew-php.josegonzalez.php55.plist'
+alias phpstop='launchctl unload /Users/achilles/Library/LaunchAgents/homebrew-php.josegonzalez.php55.plist'
+alias phprestart='launchctl unload /Users/achilles/Library/LaunchAgents/homebrew-php.josegonzalez.php55.plist && launchctl load -w /Users/achilles/Library/LaunchAgents/homebrew-php.josegonzalez.php55.plist'
+
 
 alias mysqlstart='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist'
 alias mysqlstop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist'
-mysqldb () { echo "CREATE DATABASE $1" | mysql }
+alias mysqlrestart='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist && launchctl load ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist'
 
 
 export MARKPATH=$HOME/.marks
@@ -88,3 +92,4 @@ function marks {
 }
 
 alias j=jump
+
