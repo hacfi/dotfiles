@@ -6,6 +6,8 @@ export LC_MONETARY="en_US.utf-8"
 export LC_NUMERIC="en_US.utf-8"
 export LC_TIME="en_US.utf-8"
 
+export GREP_OPTIONS="--color=always"
+
 # zsh plugins: brew composer encode64 gem git github history node npm osx rsync rvm sublime symfony2
 
 alias l='ls -lAh'
@@ -18,6 +20,9 @@ function mcd() { mkdir -p "$1" && cd "$1"; }
 alias mcd='nocorrect mcd'
 alias rp='cd `pwd -P`'
 alias scp='nocorrect scp'
+alias t='tree -afhilsF -L 1'
+alias t1='tree -ahlsF -L 1'
+alias t2='tree -afhilsF -L 2'
 
 
 alias fhistory="history | grep -i "
