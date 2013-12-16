@@ -6,6 +6,8 @@ export LC_MONETARY="en_US.utf-8"
 export LC_NUMERIC="en_US.utf-8"
 export LC_TIME="en_US.utf-8"
 
+export EDITOR=vim
+
 export GREP_OPTIONS="--color=always"
 
 # zsh plugins: brew composer encode64 gem git github history node npm osx rsync rvm sublime symfony2
