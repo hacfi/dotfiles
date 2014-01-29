@@ -1,7 +1,7 @@
 COPY_EXTENDED_ATTRIBUTES_DISABLE=true COPYFILE_DISABLE=true
 export COPY_EXTENDED_ATTRIBUTES_DISABLE COPYFILE_DISABLE
 
-alias curdir='pwd | pbcopy'
+alias curdir='copydir'
 
 alias lastmod='find . -type f -exec stat -f "%m %N" {} \; | sort -n | tail -1 | cut -f2- -d" "'
 ltree() { tree -C $* | less -R }
@@ -22,8 +22,8 @@ rmattr() {
     while read attr
     do
       echo "removing ${attr} from ${filename}"
-      xattr -d "${attr}" "${filename}"
-    done < <(xattr "${filename}")
+      xattr -s -d "${attr}" "${filename}"
+    done < <(xattr -s "${filename}")
   done
 }
 
@@ -33,6 +33,10 @@ alias vs='vsplit_tab'
 function after() {
   $@
   /usr/local/bin/growlnotify Finished -m 'Done'
+}
+
+function rand {
+  openssl rand -base64 8 | shasum | cut -c 1-16 | tr -d "\r\n" | pbcopy;pbpaste
 }
 
 function randpass {
