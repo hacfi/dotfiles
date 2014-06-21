@@ -97,3 +97,4 @@ function marks {
 
 alias j=jump
 
+alias sr=screenresolution
