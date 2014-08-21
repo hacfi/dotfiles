@@ -1,5 +1,9 @@
 #!/bin/sh
 
+brew tap homebrew/dupes
+
+brew tap homebrew/php
+
 brew install \
     php55 \
     --with-fpm \
@@ -18,3 +22,4 @@ brew install \
 
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
+

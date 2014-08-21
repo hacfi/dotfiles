@@ -13,7 +13,9 @@ set expandtab
 
 set bs=2
 
-" set viminfo=""
+set clipboard=unnamed
+
+set viminfo=""
 
 syntax on
 

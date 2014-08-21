@@ -172,8 +172,8 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 # Disable the warning before emptying the Trash
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
-# Empty Trash securely by default
-defaults write com.apple.finder EmptyTrashSecurely -bool true
+# Don’t empty Trash securely by default
+defaults write com.apple.finder EmptyTrashSecurely -bool false
 
 # Expand the following File Info panes:
 # “General”, “Open with”, and “Sharing & Permissions”
@@ -183,7 +183,7 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
         Privileges -bool true
 
 
-# Minimize windows into their application’s icon
+# Don’t minimize windows into their application’s icon
 defaults write com.apple.dock minimize-to-application -bool false
 
 # Enable spring loading for all Dock items
@@ -209,8 +209,8 @@ defaults write com.apple.dock expose-animation-duration -float 0.1
 # (i.e. don’t use the old Exposé behavior)
 defaults write com.apple.dock expose-group-by-app -bool true
 
-# Set the icon size of Dock items to 64 pixels
-defaults write com.apple.dock tilesize -int 64
+# Set the icon size of Dock items to 56 pixels
+defaults write com.apple.dock tilesize -int 56
 
 #Disable Safari’s thumbnail cache for History and Top Sites
 defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
@@ -370,3 +370,4 @@ defaults write com.twitter.twitter-mac HideInBackground -bool true
 for app in "Activity Monitor" "Dock" "Finder" "Safari" "SystemUIServer" "Twitter"; do
   killall "${app}" > /dev/null 2>&1
 done
+

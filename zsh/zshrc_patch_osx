@@ -1,0 +1,41 @@
+--- .zshrc.default	2014-06-21 05:06:18.000000000 +0200
++++ .zshrc	2014-07-21 05:46:10.000000000 +0200
+@@ -5,7 +5,7 @@
+ # Look in ~/.oh-my-zsh/themes/
+ # Optionally, if you set this to "random", it'll load a random theme each
+ # time that oh-my-zsh is loaded.
+-ZSH_THEME="robbyrussell"
++ZSH_THEME="hacfi"
+ 
+ # Example aliases
+ # alias zshconfig="mate ~/.zshrc"
+@@ -48,13 +48,13 @@
+ # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+ # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+ # Example format: plugins=(rails git textmate ruby lighthouse)
+-plugins=(git)
++plugins=(brew brew-cask composer copydir copyfile docker encode64 extract gem git go history history-substring-search jump mosh npm osx redis-cli rsync ssh-agent sublime sudo symfony2 tmux vagrant)
+ 
+ source $ZSH/oh-my-zsh.sh
+ 
+ # User configuration
+ 
+-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin"
++export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+ # export MANPATH="/usr/local/man:$MANPATH"
+ 
+ # You may need to manually set your language environment
+@@ -72,3 +72,13 @@
+ 
+ # ssh
+ # export SSH_KEY_PATH="~/.ssh/dsa_id"
++
++fpath=(/usr/local/share/zsh-completions $fpath)
++
++source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
++
++export GOPATH=$HOME/go
++
++export HOMEBREW_CASK_OPTS=--appdir=/Applications
++
++export PATH=~/.composer/vendor/bin:$PATH
