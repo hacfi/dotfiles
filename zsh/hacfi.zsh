@@ -103,6 +103,15 @@ function ghrepos() {
 dbcreate () { echo "CREATE DATABASE $1" | mysql }
 dbdrop () { echo "DROP DATABASE $1" | mysql }
 
+function gitroot() {
+  dir=${PWD%/$1/*}/$1
+  while [[ $PWD != '/' && ! -d .git ]]; do cd ..; done
+  if [ $PWD = '/' ]; then
+    cd "$dir";
+  fi
+}
+alias gitroot.='.. && gitroot'
+
 function sfroot() {
   dir=${PWD%/$1/*}/$1
   while [[ $PWD != '/' && ! -f composer.json ]]; do cd ..; done

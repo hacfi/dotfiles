@@ -1,26 +1,28 @@
 [core]
-  excludesfile = ~/.gitignore
-  pager = less -F -X
-  autocrlf = input
-  safecrlf = false
+	excludesfile = ~/.gitignore
+	pager = less -F -X
+	autocrlf = input
+	safecrlf = false
 [user]
-  name = Philipp Wahala
-  email = philipp.wahala@gmail.com
+	name = Philipp Wahala
+	email = philipp.wahala@gmail.com
 [color]
-  ui = true
-  branch = auto
-  diff = auto
-  interactive = auto
-  status = auto
+	ui = true
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
 [pretty]
-  pretty-history = format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset
+	pretty-history = format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset
 [github]
-  user = hacfi
+	user = hacfi
 [difftool "sourcetree"]
-  cmd = /usr/local/bin/ksdiff -w \"$LOCAL\" \"$REMOTE\"
-  path =
+	cmd = /usr/local/bin/ksdiff -w \"$LOCAL\" \"$REMOTE\"
+	path =
 [mergetool "sourcetree"]
-  cmd = /usr/local/bin/ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-  trustExitCode = true
+	cmd = /usr/local/bin/ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
 [push]
-  default = simple
+	default = simple
+[alias]
+	cl = clone
