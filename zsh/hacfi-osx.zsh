@@ -5,7 +5,7 @@ alias lastmod='find . -type f -exec stat -f "%m %N" {} \; | sort -n | tail -1 | 
 ltree() { tree -C $* | less -R }
 
 showattr() {
-  find . -xattr| while read filename
+  find . -xattr | while read filename
   do
     while read attr
     do
@@ -24,6 +24,8 @@ rmattr() {
     done < <(xattr -s "${filename}")
   done
 }
+
+alias sr=screenresolution
 
 alias hs='split_tab'
 alias vs='vsplit_tab'
@@ -60,9 +62,8 @@ alias phpstart='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php55.plist'
 alias phpstop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php55.plist'
 alias phprestart='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php55.plist && launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php55.plist'
 
-
 alias mysqlstart='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist'
 alias mysqlstop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist'
 alias mysqlrestart='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist && launchctl load ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist'
 
-alias sr=screenresolution
+

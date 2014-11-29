@@ -8,7 +8,8 @@ export LC_TIME="en_US.utf-8"
 
 export EDITOR=vim
 
-export GREP_OPTIONS="--color=always"
+# export GREP_OPTIONS="--color=always"
+alias grepc="grep --color=always "
 
 # zsh plugins: brew composer encode64 gem git github history node npm osx rsync rvm sublime symfony2
 
@@ -21,18 +22,18 @@ alias ......='cd ../../../../..'
 function mcd() { mkdir -p "$1" && cd "$1"; }
 alias mcd='nocorrect mcd'
 alias rp='cd `pwd -P`'
+alias j=jump
+
 alias scp='nocorrect scp'
 alias t='tree -afhilsF -L 1'
 alias t1='tree -ahlsF -L 1'
 alias t2='tree -afhilsF -L 2'
 
-
 alias fhistory="history | grep -i "
-alias cleandir='find . -name ".DS_Store" -delete'
+alias cleandir='find . -name ".DS_Store" -exec rm -fv {} \;'
 
 alias mtr='nocorrect mtr'
 alias netlisteners='sudo lsof -i -P | grep LISTEN'
-
 
 function sshauth() {
   ssh "$1" 'mkdir -p -m 0700 ~/.ssh && cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
@@ -125,8 +126,8 @@ function sfpermission() {
   chmod 0777 app/cache app/logs app/var/sessions
 }
 
-alias cll='rm app/logs/*.log'
-alias sfcl='rm -rf app/cache/*'
+alias cll='rm */logs/*.log'
+alias sfcl='rm -rf */cache/*'
 alias sfdc='sf doctrine:database:create'
 alias sfdd='sf doctrine:database:drop'
 alias sfsc='sf doctrine:schema:create'
@@ -141,6 +142,8 @@ alias sfr='sf router:debug -e=prod'
 alias sfrd='sf router:debug -e=dev'
 alias sfgesnb='sf doctrine:generate:entities --no-backup'
 alias sfpop='sf fos:elastica:populate'
+alias sfbb='php ./vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php $(pwd)/var $(pwd)/app 1'
+# alias sfbb='php ./vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php 0 0 1'
 
 alias twigcache='grep -r "^/\*" app/cache/dev/twig | grep "html\.twig"'
 
