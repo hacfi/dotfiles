@@ -12,5 +12,6 @@
 
 *.sublime-*
 
+_archive
 data/tmp
 

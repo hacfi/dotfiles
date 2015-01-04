@@ -13,7 +13,10 @@ alias grepc="grep --color=always "
 
 # zsh plugins: brew composer encode64 gem git github history node npm osx rsync rvm sublime symfony2
 
-alias l='ls -lAh'
+alias l='ls -lFh'
+alias la='ls -lFah'
+alias lsd="ls -1F | grep --color=never '\/$'"
+
 
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -101,9 +104,6 @@ function ghrepos() {
 }
 
 
-dbcreate () { echo "CREATE DATABASE $1" | mysql }
-dbdrop () { echo "DROP DATABASE $1" | mysql }
-
 function gitroot() {
   dir=${PWD%/$1/*}/$1
   while [[ $PWD != '/' && ! -d .git ]]; do cd ..; done
@@ -112,6 +112,11 @@ function gitroot() {
   fi
 }
 alias gitroot.='.. && gitroot'
+
+alias doc='docker'
+
+dbcreate () { echo "CREATE DATABASE $1" | mysql }
+dbdrop () { echo "DROP DATABASE $1" | mysql }
 
 function sfroot() {
   dir=${PWD%/$1/*}/$1
