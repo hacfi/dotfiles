@@ -1,27 +1,9 @@
 #!/usr/bin/env zsh
 
-# ls colors
+# Colors
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export LS_COLORS='no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=41;33;01:ex=00;32:*.cmd=00;32:*.exe=01;32:*.com=01;32:*.bat=01;32:*.btm=01;32:*.dll=01;32:*.tar=00;31:*.tbz=00;31:*.tgz=00;31:*.rpm=00;31:*.deb=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.lzma=00;31:*.zip=00;31:*.zoo=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.tb2=00;31:*.tz2=00;31:*.tbz2=00;31:*.avi=01;35:*.bmp=01;35:*.fli=01;35:*.gif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mng=01;35:*.mov=01;35:*.mpg=01;35:*.pcx=01;35:*.pbm=01;35:*.pgm=01;35:*.png=01;35:*.ppm=01;35:*.tga=01;35:*.tif=01;35:*.xbm=01;35:*.xpm=01;35:*.dl=01;35:*.gl=01;35:*.wmv=01;35:*.aiff=00;32:*.au=00;32:*.mid=00;32:*.mp3=00;32:*.ogg=00;32:*.voc=00;32:*.wav=00;32:'
 
-# git theming
-ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg_bold[cyan]%}[on %{$fg_no_bold[default]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg_bold[cyan]%}] "
-ZSH_THEME_GIT_PROMPT_CLEAN="✔"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[white]%}✰"
-
-
-
-PR_GIT_UPDATE=1
-
-setopt prompt_subst
-autoload colors
-colors
-
-autoload -U add-zsh-hook
-autoload -Uz vcs_info
-
-#use extended color pallete if available
 if [[ $TERM = *256color* || $TERM = *rxvt* ]]; then
     turquoise="%F{81}"
     orange="%F{166}"
@@ -36,9 +18,24 @@ else
     limegreen="$fg[green]"
 fi
 
+# Git theming
+ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg_bold[cyan]%}[on %{$fg_no_bold[default]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg_bold[cyan]%}] "
+ZSH_THEME_GIT_PROMPT_CLEAN="✔"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[white]%}✰"
+
+PR_GIT_UPDATE=1
+
+setopt prompt_subst
+autoload colors
+colors
+
+autoload -U add-zsh-hook
+autoload -Uz vcs_info
+
+
 zstyle ':vcs_info:*' enable git
 
-# check-for-changes can be really slow.
 # you should disable it, if you work with large repositories
 zstyle ':vcs_info:*:prompt:*' check-for-changes true
 
@@ -120,9 +117,10 @@ show_git_diff () {
 }
 
 show_git_diff_stats () {
+  # git_shortstats=$(git diff HEAD --shortstat 2>&1) || git_shortstats=""
   git_shortstats=$(git diff HEAD --shortstat 2>&1) || git_shortstats=""
   if [[ -n $git_shortstats ]]; then
-    echo $(git diff HEAD --shortstat)" "
+    echo $(git diff HEAD --shortstat | sed s/\.changed// | sed s/ertions/\./ | sed s/etions/./)" "
   fi
 }
 
@@ -145,7 +143,8 @@ host_default="$(hostname -s)%{$fg_no_bold[cyan]%}"
 local host="%{$fg[magenta]%}${host_repr[$(hostname -s)]:-@${host_default}}"
 
 # local pwd="%{$fg_no_bold[green]%}%50<...<%d%<<%{$reset_color%}"
-local pwd="%{$fg_no_bold[green]%}%d%{$reset_color%}"
+# local pwd="%{$fg_no_bold[green]%}%d%{$reset_color%}"
+local pwd="%{$fg_no_bold[green]%}%~%{$reset_color%}"
 
 local seperator="●%{$reset_color%}"
 
@@ -153,8 +152,8 @@ PROMPT='$(show_git_diff)${user}${host}${seperator}${pwd} $vcs_info_msg_0_
 » '
 
 
-# right prompt
-time_enabled="[%(?..%{$fg[red]%})%*%{$reset_color%}]"
+# Right prompt
+time_enabled="%(?..%{$fg[red]%}%?%{$reset_color%}) [%(?..%{$fg[red]%})%*%{$reset_color%}]"
 time_disabled="[%*]"
 time=$time_enabled
 
