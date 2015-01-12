@@ -45,6 +45,11 @@ function sshauth() {
 alias highmem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
 
 alias tar='nocorrect tar'
+function unrar1() {
+  unrar e "$1" $(unrar lb "$1" | head -n 1)
+}
+
+alias mt='cat /dev/null >!'
 
 function up() {
     dir=""
