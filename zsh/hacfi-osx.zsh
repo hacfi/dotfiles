@@ -57,10 +57,13 @@ alias nginxrestart='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.n
 alias nginxreload='sudo kill -HUP `cat /usr/local/var/run/nginx.pid`'
 alias nginxt='sudo /usr/local/bin/nginx -t'
 
-alias phpconf='st /usr/local/etc/php/5.5'
+alias phpconf='st /usr/local/etc/php'
 alias phpstart='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php55.plist'
 alias phpstop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php55.plist'
 alias phprestart='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php55.plist && launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php55.plist'
+alias php56start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php56.plist'
+alias php56stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php56.plist'
+alias php56restart='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php56.plist && launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php56.plist'
 
 alias mysqlstart='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist'
 alias mysqlstop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist'
