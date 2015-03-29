@@ -2,7 +2,7 @@ COPY_EXTENDED_ATTRIBUTES_DISABLE=true COPYFILE_DISABLE=true
 export COPY_EXTENDED_ATTRIBUTES_DISABLE COPYFILE_DISABLE
 
 alias lastmod='find . -type f -exec stat -f "%m %N" {} \; | sort -n | tail -1 | cut -f2- -d" "'
-ltree() { tree -C $* | less -R }
+ltree() { tree -aCF --dirsfirst $* | less -R }
 
 showattr() {
   find . -xattr | while read filename
@@ -19,9 +19,17 @@ rmattr() {
   do
     while read attr
     do
-      echo "removing ${attr} from ${filename}"
-      xattr -s -d "${attr}" "${filename}"
+      echo "removing attr ${attr} from ${filename}"
+      xattr -d -s "${attr}" "${filename}"
     done < <(xattr -s "${filename}")
+  done
+}
+
+rmqua() {
+  find . -xattrname com.apple.quarantine | while read filename
+  do
+    echo "removing attr com.apple.quarantine from ${filename}"
+    xattr -d -s com.apple.quarantine "${filename}"
   done
 }
 

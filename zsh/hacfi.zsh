@@ -13,7 +13,7 @@ alias grepc="grep --color=always "
 
 # zsh plugins: brew composer encode64 gem git github history node npm osx rsync rvm sublime symfony2
 
-alias l='ls -lFh'
+alias l='ls -lFAh'
 alias la='ls -lFah'
 alias lsd="ls -1F | grep --color=never '\/$'"
 
@@ -22,8 +22,10 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
+
 function mcd() { mkdir -p "$1" && cd "$1"; }
 alias mcd='nocorrect mcd'
+
 alias rp='cd `pwd -P`'
 alias j=jump
 
@@ -101,7 +103,7 @@ function glog() {
 
 
 function ghclone() {
-    while read line; do git clone git@github.com:$line.git /var/www/github/$line; done
+    while read line; do git clone $line ~/src/github.com/$line; done
 }
 
 function ghrepos() {

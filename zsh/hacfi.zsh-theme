@@ -149,7 +149,7 @@ local pwd="%{$fg_no_bold[green]%}%~%{$reset_color%}"
 local seperator="●%{$reset_color%}"
 
 PROMPT='$(show_git_diff)${user}${host}${seperator}${pwd} $vcs_info_msg_0_
-» '
+${SSH_CLIENT:+%#}» '
 
 
 # Right prompt
@@ -171,4 +171,6 @@ function accept-line-or-clear-warning () {
 zle -N accept-line-or-clear-warning
 bindkey '^M' accept-line-or-clear-warning
 
-
+# _prompt_and_resched() { sched +1 _prompt_and_resched; zle && zle reset-prompt }
+# _prompt_and_resched
+# PS1="%D{%H:%M:%S} $PS1"
