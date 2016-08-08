@@ -1,0 +1,13 @@
+alias v='vagrant'
+alias vb='vagrant box'
+alias vd='vagrant destroy'
+alias vgs='vagrant global-status'
+alias vh='vagrant halt'
+alias vr='vagrant reload'
+alias vsh='vagrant ssh'
+alias vst='vagrant status'
+alias vu='vagrant up'
+
+alias vbm='VBoxManage'
+alias vls='VBoxManage list vms'
+alias vlsr='VBoxManage list runningvms'
