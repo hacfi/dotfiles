@@ -1,5 +1,9 @@
+# zsh plugins (2016-02): aws battery bower brew bundler common-aliases composer copydir copyfile docker docker-compose encode64 extract git git-extas github grunt history-substring-search httpie jsontools jump mosh node npm nvm osx postgres redis-cli rsync rvm sudo symfony2 vagrant
 COPY_EXTENDED_ATTRIBUTES_DISABLE=true COPYFILE_DISABLE=true
 export COPY_EXTENDED_ATTRIBUTES_DISABLE COPYFILE_DISABLE
+
+alias htop='sudo htop'
+alias purge='sudo purge'
 
 alias lastmod='find . -type f -exec stat -f "%m %N" {} \; | sort -n | tail -1 | cut -f2- -d" "'
 ltree() { tree -aCF --dirsfirst $* | less -R }
@@ -55,26 +59,27 @@ alias myip='curl -s ip.appspot.com | pbcopy;pbpaste'
 
 alias flush_dns='sudo dscacheutil -flushcache'
 
-alias hosts='st /etc/hosts'
+alias hosts='atom /etc/hosts'
 
-alias nginxconf='st /usr/local/etc/nginx'
+alias nginxconf='atom /usr/local/etc/nginx'
 alias nginxsites='cd /usr/local/etc/nginx/sites-enabled'
-alias nginxstart='sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
-alias nginxstop='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
-alias nginxrestart='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist && sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
 alias nginxreload='sudo kill -HUP `cat /usr/local/var/run/nginx.pid`'
 alias nginxt='sudo /usr/local/bin/nginx -t'
 
-alias phpconf='st /usr/local/etc/php'
-alias phpstart='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php55.plist'
-alias phpstop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php55.plist'
-alias phprestart='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php55.plist && launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php55.plist'
-alias php56start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php56.plist'
-alias php56stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php56.plist'
-alias php56restart='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.php56.plist && launchctl load ~/Library/LaunchAgents/homebrew.mxcl.php56.plist'
+alias phpconf='atom /usr/local/etc/php'
 
-alias mysqlstart='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist'
-alias mysqlstop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist'
-alias mysqlrestart='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist && launchctl load ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist'
+function reboot() {
+  bash -c '/usr/bin/osascript -e "quit app \"Atom\"" &> /dev/null || true'
+  sleep 2
+  bash -c '/usr/bin/osascript -e "tell application \"Finder\" to restart" || true'
+}
 
+alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+
+tree_dirs(){
+    dir=${1:-.}
+    ls -R ${dir}| grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+}
+
+alias wifi='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 

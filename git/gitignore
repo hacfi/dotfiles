@@ -3,6 +3,7 @@
 ._*
 .Spotlight-V100
 .Trashes
+.envrc
 
 .todo
 .buildpath
@@ -11,6 +12,8 @@
 .idea/
 
 *.sublime-*
+
+.vagrant/
 
 _archive
 data/tmp

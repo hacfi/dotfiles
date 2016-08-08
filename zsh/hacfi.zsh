@@ -11,8 +11,6 @@ export EDITOR=vim
 # export GREP_OPTIONS="--color=always"
 alias grepc="grep --color=always "
 
-# zsh plugins: brew composer encode64 gem git github history node npm osx rsync rvm sublime symfony2
-
 alias l='ls -lFAh'
 alias la='ls -lFah'
 alias lsd="ls -1F | grep --color=never '\/$'"
@@ -38,7 +36,8 @@ alias fhistory="history | grep -i "
 alias cleandir='find . -name ".DS_Store" -exec rm -fv {} \;'
 
 alias mtr='nocorrect mtr'
-alias netlisteners='sudo lsof -i -P | grep LISTEN'
+alias oports='sudo lsof -i -P | grep LISTEN'
+alias osockets='sudo lsof -U | grep sock'
 
 function sshauth() {
   ssh "$1" 'mkdir -p -m 0700 ~/.ssh && cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
@@ -73,90 +72,7 @@ function upstr() {
     echo "$(up "$1" && pwd)";
 }
 
-alias glp='git log --graph --pretty=pretty-history --abbrev-commit --date=relative'
-
-function gitlc() {
-  now=`date +%s`
-  last_commit=`git log --pretty=format:'%at' -1`
-  seconds_since_last_commit=$((now-last_commit))
-  minutes_since_last_commit=$((seconds_since_last_commit/60))
-  if [ $minutes_since_last_commit -le 120 ]
-  then
-    echo $minutes_since_last_commit minutes since last commit
-  else
-    echo $(($minutes_since_last_commit/60)) hours since last commit
-  fi
-}
-
-function gdiff() {
-    xr=$(git diff HEAD --stat 2>&1) || xr=""
-    #echo "$xr"
-    if [[ $xr != '' ]]; then
-        git diff HEAD --stat 2>&1
-    fi
-}
-
-function glog() {
-    br=$(glp -n 12 2>&1) || br=""
-    echo "$br"
-}
-
-
-function ghclone() {
-    while read line; do git clone $line ~/src/github.com/$line; done
-}
-
-function ghrepos() {
-  curl -s https://api.github.com/users/$1/repos | grep -i full_name | cut -d : -f 2 | cut -d \" -f 2
-}
-
-
-function gitroot() {
-  dir=${PWD%/$1/*}/$1
-  while [[ $PWD != '/' && ! -d .git ]]; do cd ..; done
-  if [ $PWD = '/' ]; then
-    cd "$dir";
-  fi
-}
-alias gitroot.='.. && gitroot'
-
 alias doc='docker'
 
 dbcreate () { echo "CREATE DATABASE $1" | mysql }
 dbdrop () { echo "DROP DATABASE $1" | mysql }
-
-function sfroot() {
-  dir=${PWD%/$1/*}/$1
-  while [[ $PWD != '/' && ! -f composer.json ]]; do cd ..; done
-  if [ $PWD = '/' ]; then
-    cd "$dir";
-  fi
-}
-alias sfroot.='.. && sfroot'
-
-function sfpermission() {
-  chmod 0777 app/cache app/logs app/var/sessions
-}
-
-alias cll='rm */logs/*.log'
-alias sfcl='rm -rf */cache/*'
-alias sfdc='sf doctrine:database:create'
-alias sfdd='sf doctrine:database:drop'
-alias sfsc='sf doctrine:schema:create'
-alias sfsu='sf doctrine:schema:update --dump-sql && sf doctrine:schema:update --force'
-alias sfge='sf doctrine:generate:entity'
-alias sfges='sf doctrine:generate:entities'
-alias sfgb='sf generate:bundle'
-alias sfcrud='sf doctrine:generate:crud'
-alias sfform='sf doctrine:generate:form'
-alias sfsr='sf server:run'
-alias sfr='sf router:debug -e=prod'
-alias sfrd='sf router:debug -e=dev'
-alias sfgesnb='sf doctrine:generate:entities --no-backup'
-alias sfpop='sf fos:elastica:populate'
-alias sfbb='php ./vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php $(pwd)/var $(pwd)/app 1'
-# alias sfbb='php ./vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php 0 0 1'
-
-alias twigcache='grep -r "^/\*" app/cache/dev/twig | grep "html\.twig"'
-
-

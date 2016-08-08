@@ -17,6 +17,10 @@ mark() {
     MARK="$1"
   fi
 
+  if test -f "$MARKPATH/$MARK"; then
+    echo "Mark $1 already exists - overwriting!"
+  fi
+
   if read -q \?"Mark $(pwd) as ${MARK}? (y/n) "; then
     mkdir -p "$MARKPATH"; echo "$(pwd)" > "$MARKPATH/$MARK"
   fi

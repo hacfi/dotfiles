@@ -4,7 +4,7 @@ ZSH_THEME="hacfi"
 
 export UPDATE_ZSH_DAYS=7
 
-ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="true"
 HIST_STAMPS="dd.mm.yyyy"
 
 plugins=(atom battery boot2docker bower brew common-aliases composer copydir copyfile docker docker-compose encode64 extract git git-extas github grunt history-substring-search httpie jsontools jump mosh node npm osx postgres redis-cli rsync sudo symfony2 vagrant)

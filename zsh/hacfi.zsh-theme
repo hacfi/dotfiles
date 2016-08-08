@@ -125,15 +125,6 @@ show_git_diff_stats () {
 }
 
 
-log_pwd_path() {
-  if [ "$(id -u)" -ne 0 ]; then
-    FULL_CMD_LOG=~/zsh_history.log;
-    echo "`/bin/date '+%Y-%m-%d  %H%:%M:%S'`\t`pwd`\t\t`fc -n -l -1`" >> ${FULL_CMD_LOG};
-  fi
-}
-
-add-zsh-hook precmd log_pwd_path
-
 local user="%{$fg_no_bold[cyan]%}%n"
 
 typeset -A host_repr
