@@ -25,6 +25,7 @@ alias drma='docker rm -v $(dpa -q)'
 alias drmi='docker rmi'
 alias ds='docker start'
 alias dst='docker stop'
+alias dsta='docker stop $(dpa -q)'
 alias dt='docker tag'
 
 alias dca='/usr/bin/dc'
