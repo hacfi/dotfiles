@@ -5,6 +5,8 @@ export COPY_EXTENDED_ATTRIBUTES_DISABLE COPYFILE_DISABLE
 alias htop='sudo htop'
 alias purge='sudo purge'
 alias pu='sudo purge'
+alias qlreset='qlmanage -r'
+alias qlclear='qlmanage -r cache'
 
 alias lastmod='find . -type f -exec stat -f "%m %N" {} \; | sort -n | tail -1 | cut -f2- -d" "'
 ltree() { tree -aCF --dirsfirst $* | less -R }

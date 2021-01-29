@@ -27,7 +27,8 @@ alias mcd='nocorrect mcd'
 alias rp='cd `pwd -P`'
 alias j=jump
 
-alias scp='nocorrect scp'
+alias m="if [[ -f .notes/Makefile ]]; then make -f .notes/Makefile; else make; fi"
+
 alias t='tree -afhilsF -L 1'
 alias t1='tree -ahlsF -L 1'
 alias t2='tree -afhilsF -L 2'
@@ -39,8 +40,27 @@ alias mtr='nocorrect mtr'
 alias oports='sudo lsof -i -P | grep LISTEN'
 alias osockets='sudo lsof -U | grep sock'
 
+
 function sshauth() {
   ssh "$1" 'mkdir -p -m 0700 ~/.ssh && cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
+}
+
+
+function ssh() {
+  if [[ -f .ssh_config ]]; then
+    /usr/bin/ssh -F .ssh_config "$@";
+  else
+    /usr/bin/ssh "$@";
+  fi
+}
+
+
+function scp() {
+  if [[ -f .ssh_config ]]; then
+    /usr/bin/scp -F .ssh_config "$@";
+  else
+    /usr/bin/scp "$@";
+  fi
 }
 
 alias highmem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
@@ -72,7 +92,6 @@ function upstr() {
     echo "$(up "$1" && pwd)";
 }
 
-alias doc='docker'
+alias ggfpush='git push -f origin "$(git_current_branch)"'
 
-dbcreate () { echo "CREATE DATABASE $1" | mysql }
-dbdrop () { echo "DROP DATABASE $1" | mysql }
+

@@ -32,7 +32,7 @@ unmark() {
 
 autoload colors
 marks() {
-  find "$MARKPATH" -type f | while read filename
+  find "$MARKPATH" -type f | sort -n | while read filename
   do
    printf "$fg_no_bold[blue]%-12s$reset_color -> $fg_no_bold[green]%s$reset_color\n" $(basename ${filename}) $(head -n 1 ${filename})
   done

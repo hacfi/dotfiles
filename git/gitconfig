@@ -1,5 +1,5 @@
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore_global
 	pager = less -F -X
 	autocrlf = input
 	safecrlf = false
@@ -20,3 +20,6 @@
 	default = simple
 [alias]
 	cl = clone
+[include]
+  path = ~/.gitconfig.aliases
+  path = ~/.gitconfig.url

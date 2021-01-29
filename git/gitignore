@@ -10,11 +10,15 @@
 .project
 .settings/
 .idea/
+.vscode/
 
 *.sublime-*
 
 .vagrant/
 
+.notes/
 _archive
 data/tmp
+
+.ssh_config
 
